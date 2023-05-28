@@ -7,7 +7,7 @@ import hiber.model.User;
 @Table(name="cars")
 public class Car {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="c_id")
     private Long id;
     @Column(name="model")
@@ -15,6 +15,7 @@ public class Car {
     @Column(name="series")
     private int series;
 
+    @OneToOne (optional=false, mappedBy="car")
     private User user;
 
     public Car() {}
@@ -46,12 +47,11 @@ public class Car {
         this.series = series;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "cars")
+
     public User getUser() {
         return user;
     }
     public void setUser(User user) {
-        user.setCar(this);
         this.user = user;
     }
 

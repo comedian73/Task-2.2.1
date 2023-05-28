@@ -1,11 +1,15 @@
 package hiber.dao;
 
 import hiber.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository
@@ -25,4 +29,17 @@ public class UserDaoImp implements UserDao {
       TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
       return query.getResultList();
    }
+
+   @Override
+   public void dropUsersTable() {
+      Session session = sessionFactory.openSession();
+      Transaction transaction = session.beginTransaction();
+
+      Query query = session.createSQLQuery("DROP TABLE IF EXISTS users").addEntity(User.class);
+      query.executeUpdate();
+
+      transaction.commit();
+      session.close();
+   }
+
 }

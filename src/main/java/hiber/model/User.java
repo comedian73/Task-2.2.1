@@ -19,10 +19,12 @@ public class User {
    @Column(name = "email")
    private String email;
 
+   @OneToOne (optional=false)
+   @JoinColumn (name="car_id")
    private Car car;
 
    public User() {}
-   
+
    public User(String firstName, String lastName, String email) {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -61,12 +63,5 @@ public class User {
       this.email = email;
    }
 
-   @OneToOne
-   @JoinColumn(name = "f_id", referencedColumnName = "c_id")
-   public Car getCar() {
-      return car;
-   }
-   public void setCar(Car car) {
-      this.car = car;
-   }
+
 }
