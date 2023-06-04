@@ -25,9 +25,9 @@ public class CarServiceImp implements CarService{
         return carDao.listCar();
     }
 
-//    @Transactional
-//    @Override
-//    public void dropCarTable() {
-//        carDao.dropCarTable();
-//    }
+    @Transactional
+    @Override
+    public void dropCarTable() {
+        carDao.dropCarTable();
+    }
 }

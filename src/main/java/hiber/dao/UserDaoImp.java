@@ -35,7 +35,7 @@ public class UserDaoImp implements UserDao {
       Session session = sessionFactory.openSession();
       Transaction transaction = session.beginTransaction();
 
-      Query query = session.createSQLQuery("DROP TABLE IF EXISTS users").addEntity(User.class);
+      Query query = session.createSQLQuery("DROP TABLE IF EXISTS users CASCADE").addEntity(User.class);
       query.executeUpdate();
 
       transaction.commit();

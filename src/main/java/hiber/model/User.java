@@ -19,8 +19,12 @@ public class User {
    @Column(name = "email")
    private String email;
 
-   @OneToOne (optional=false)
-   @JoinColumn (name="car_id")
+   @OneToOne(
+        mappedBy = "user",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true,
+        fetch = FetchType.LAZY
+   )
    private Car car;
 
    public User() {}
@@ -64,4 +68,12 @@ public class User {
    }
 
 
+   public void getCar(Car car) {
+      car.setUser( this );
+      this.car = car;
+   }
+//
+//   public void setCar(Car car) {
+//      this.car = car;
+//   }
 }
