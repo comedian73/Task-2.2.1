@@ -25,7 +25,8 @@ public class User {
         orphanRemoval = true,
         fetch = FetchType.LAZY
    )
-   private Car car;
+   @JoinColumn(name = "c_id", referencedColumnName = "c_id")
+   public Car car;
 
    public User() {}
 
@@ -34,6 +35,7 @@ public class User {
       this.lastName = lastName;
       this.email = email;
    }
+
 
    public Long getId() {
       return id;
@@ -68,12 +70,12 @@ public class User {
    }
 
 
-   public void getCar(Car car) {
+   public void setCar(Car car) {
       car.setUser( this );
       this.car = car;
    }
-//
-//   public void setCar(Car car) {
-//      this.car = car;
-//   }
+
+   public void getCar(Car car) {
+      this.car = car;
+   }
 }

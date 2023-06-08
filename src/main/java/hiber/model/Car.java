@@ -14,9 +14,11 @@ public class Car {
     @Column(name="series")
     private int series;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "u_id", referencedColumnName = "id")
+    public User user;
 
     public Car() {}
     public Car(String model, int series) {
