@@ -36,7 +36,6 @@ public class User {
       this.email = email;
    }
 
-
    public Long getId() {
       return id;
    }
@@ -68,7 +67,6 @@ public class User {
    public void setEmail(String email) {
       this.email = email;
    }
-
 
    public void setCar(Car car) {
       car.setUser( this );
